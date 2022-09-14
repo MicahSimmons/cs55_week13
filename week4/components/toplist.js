@@ -16,7 +16,7 @@ export default function PersonList ( { peeps, isBad } ) {
     return <article className="col-md-5 col-12 bg-secondary mx-auto border border-2 rounded">
       <PersonListTitle isBad={isBad} />
       <div className="list-group">
-        {peeps.map( ({id, name}) => <PersonLink tag={tag} id={id} name={name} /> )}
+        {peeps.map( ({id, name}) => <PersonLink key={"pl"+id} tag={tag} id={id} name={name} /> )}
       </div>
     </article>
     
