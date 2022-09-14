@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Carmen Sandiego",
+        "alias": "The Scarlet Thief",
+        "dob": "01/21/2001",
+        "email": "girboss@evil.com",
+        "nemesis": [ 11 ],
+        "uid": 13
+    },
+    {
+        "name": "Armand Bikibrack",
+        "alias": "The Vampyre",
+        "dob": "02/24/1743",
+        "email": "sidekick@evil.com",
+        "nemesis": [ 10 ],
+        "uid": 64
+    },
+    {
+        "name": "Adrian Toomes",
+        "alias": "Vulture",
+        "dob": "03/16/1973",
+        "email": "tweeter@evil.com",
+        "nemesis": [ 9 ],
+        "uid": 4
+    },
+    {
+        "name": "Grace OConnor",
+        "alias": "False Songstress",
+        "dob": "11/18/2547",
+        "email": "vajraqueen@evil.com",
+        "nemesis": [ 12 ],
+        "uid": 2
+    },
+    {
+        "name": "Kahn Noonien Singh",
+        "alias": "Kaaaaaaaaaaaaahn",
+        "dob": "02/16/1967",
+        "email": "revenge@evil.com",
+        "nemesis": [ 13 ],
+        "uid": 58
+    }
+]

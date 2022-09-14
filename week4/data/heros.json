@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Peter Parker",
+        "alias": "Friendly Neighborhood Spiderman",
+        "dob": "01/02/2023",
+        "email": "sticky@heroes.org",
+        "nemesis": [4],
+        "uid": 9
+    },
+    {
+        "name": "Alucard Von Hellsing",
+        "alias": "The Ultimate",
+        "dob": "Unknown",
+        "email": "nightwalker@heroes.org",
+        "nemesis": [64],
+        "uid": 10
+    },
+    {
+        "name": "Bouchard",
+        "alias": "The Player",
+        "dob": "Yesterday",
+        "email": "fourohfour@heroes.org",
+        "nemesis": [13],
+        "uid": 11
+    },
+    {
+        "name": "Silvie Gena",
+        "alias": "Faerie Lt.",
+        "dob": "The Future",
+        "email": "missilelock@heroes.org",
+        "nemesis": [2],
+        "uid": 12
+    },
+    {
+        "name": "Mister Spock",
+        "alias": "You Green Blooded, Inhuman..",
+        "dob": "Wrong Planet",
+        "email": "pointy@heroes.org",
+        "nemesis": [ 58 ],
+        "uid": 13
+    }
+]
