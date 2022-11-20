@@ -5,7 +5,7 @@ import PersonCommon from "../../components/person"
 import { getUids, getData } from '../../lib/data';
 
 export async function getStaticPaths () {
-    const paths = getUids(true);
+    const paths = await getUids(true);
     return {
         paths,
         fallback: false
@@ -13,7 +13,7 @@ export async function getStaticPaths () {
 }
 
 export async function getStaticProps ( { params } ) {
-    const itemData = await getData(true, params.id);
+    const itemData = await getData(params.id);
     return {
         props: {
             itemData

@@ -1,71 +1,62 @@
-import FS from 'fs';
+//import FS from 'fs';
 import PATH from 'path';
+const FS = require('fs').promises;
 
-const dataDir = PATH.join( process.cwd(), "data");
-// const filepath = PATH.join( dataDir, "suspects.json" );
-// const jsonData = FS.readFileSync(filepath);
-// const jsonObj = JSON.parse(jsonData);
-
-export function getUids (isGoodGuys) {
-    let fileName = (isGoodGuys) ? "heros.json" : "suspects.json";
-
+async function getFileData () {
+    let fileName = "wptest.json";
     const dataDir = PATH.join( process.cwd(), "data");
     const filepath = PATH.join( dataDir, fileName );
-    const jsonData = FS.readFileSync(filepath, 'utf8');
-    const jsonObj = JSON.parse(jsonData);
+    const textData = await FS.readFile(filepath, 'utf8');
+    const jsonData = JSON.parse(textData);
+
+    const new_posts_url = "https://dev-mouse-test.pantheonsite.io/wp-json/twentytwentytwo-child/v1/latest-posts/1"
+    let rsp = await fetch(new_posts_url)
+    let newJsonData = await rsp.json();
+    console.log(newJsonData);
+
+    return newJsonData;
+}
+
+export async function getUids () {
+    const jsonObj = await getFileData();
+
     return jsonObj.map( (obj) => { 
         return {
             params: {
-                id: obj.uid.toString()
+                id: obj["ID"].toString()
             }
         }
     });
 }
 
-export function getSortedList (isGoodGuys) {
-    let fileName = (isGoodGuys) ? "heros.json" : "suspects.json";
-
-    const filepath = PATH.join( dataDir, fileName );
-    const jsonData = FS.readFileSync(filepath);
-    const jsonObj = JSON.parse(jsonData);
+export async function getSortedList () {
+    const jsonObj = await getFileData();
   
-    return jsonObj.sort( (a,b) => { return a.name.localeCompare(b.name) } )
+    return jsonObj.sort( (a,b) => { return a.post_name.localeCompare(b.post_name) } )
            .map( (item) => {
             return {
-                id: item.uid.toString(),
-                name: item.name
+                id: item["ID"].toString(),
+                name: item.post_name
             }
     });
 }
 
-export function getDataCommon(isGoodGuys, uid) {
-    let fileName = (isGoodGuys) ? "heros.json" : "suspects.json";
-    console.log("Finding " + uid + " in " + fileName);
+export async function getDataCommon(uid) {
+    const jsonObj = await getFileData();
 
-    const dataDir = PATH.join( process.cwd(), "data");
-    const filepath = PATH.join( dataDir, fileName );
-    const jsonData = FS.readFileSync(filepath, 'utf8');
-    const jsonObj = JSON.parse(jsonData);
-    let objMatch = jsonObj.filter( (obj) => { return (obj.uid.toString() === uid) })
+    let objMatch = jsonObj.filter( (obj) => { return (obj["ID"].toString() === uid) })
 
     var objReturned = {};
     if (objMatch.length > 0) {
         objReturned = objMatch[0];
-        objReturned["hero"] = isGoodGuys;
+        objReturned["hero"] = true;
     }
 
     console.log("Found:" + objReturned["name"]);
     return objReturned;
 }
 
-export function getNemData(isGoodGuys, uid) {
-    console.log("good:" + isGoodGuys + " uid:" + uid);
-    let nemList = getDataCommon(isGoodGuys, uid)
-    return nemList;
-}
-
-export async function getData(isGoodGuys, uid) {
-    let objReturned = getDataCommon(isGoodGuys, uid);
-    objReturned["nemData"] = getDataCommon(!isGoodGuys, objReturned.nemesis.toString());
+export async function getData(uid) {
+    let objReturned = await getDataCommon(uid);
     return objReturned;
 }
