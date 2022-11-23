@@ -49,7 +49,6 @@ export async function getDataCommon(uid) {
     var objReturned = {};
     if (objMatch.length > 0) {
         objReturned = objMatch[0];
-        objReturned["hero"] = true;
     }
 
     console.log("Found:" + objReturned["name"]);
