@@ -12,7 +12,6 @@ async function getFileData () {
     const new_posts_url = "https://dev-mouse-test.pantheonsite.io/wp-json/twentytwentytwo-child/v1/latest-posts/1"
     let rsp = await fetch(new_posts_url)
     let newJsonData = await rsp.json();
-    console.log(newJsonData);
 
     return newJsonData;
 }

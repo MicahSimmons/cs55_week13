@@ -4,18 +4,21 @@ import Layout from "../components/layout"
 import styles from '../styles/Home.module.css'
 
 import { getSortedList } from "../lib/data.js"
+import { getContactsList } from "../lib/contacts.js"
 import PersonList from "../components/toplist"
 
 export async function getStaticProps () {
   const goodGuys = await getSortedList(true);
+  const contacts = await getContactsList();
   return {
       props: {
-          heroes:   goodGuys
+          heroes:   goodGuys,
+          contacts: contacts
       }
   };
 }
 
-export default function Home( { heroes }) {
+export default function Home( { heroes, contacts }) {
   return (
     <Layout home>
       <div className="container">
